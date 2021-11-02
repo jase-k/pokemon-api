@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Character from './Character';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Pokemon = (props) => {
     const [names, setNames] = useState([])
     function handleClick(){
-        fetch("https://pokeapi.co/api/v2/pokemon/?limit=1000")
-        .then(response => response.json())
-        .then(response => setNames(response.results))
+        axios.get("https://pokeapi.co/api/v2/pokemon/?limit=1000")
+        .then(response => setNames(response.data.results))
+        .then(response => console.log(response))
     }    
         
     return (
